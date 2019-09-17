@@ -1,0 +1,13 @@
+.DS_Store
+.project
+.settings
+.classpath
+/target
+/.repository/
+/xdocreport-parent.iml
+/.idea/
+/out
+/*.docx
+/*.xml
+*.iml
+/project.fields.xml-data
