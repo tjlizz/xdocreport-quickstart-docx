@@ -38,7 +38,7 @@ public class GenerateDocxReport {
 
         // 3) Create context Java model
         IContext context = report.createContext();
-        Project project = new Project("XDocReport", "logo");
+        Project project = new Project("logo");
         context.put("project", project);
         context.put("logo", logo);
         // Register developers list
@@ -47,6 +47,13 @@ public class GenerateDocxReport {
                 .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com"));
         developers.add(new Developer("Leclercq", "Pascal",
                 "pascal.leclercq@gmail.com"));
+        developers.add(new Developer("Leclercq", "Pascal",
+                "pascal.leclercq@gmail.com"));
+        for (int i = 0; i < 10; i++) {
+            developers.add(new Developer(System.currentTimeMillis()+"", "Pascal",
+                    "pascal.leclercq@gmail.com"));
+
+        }
         context.put("developers", developers);
 
         // 4) Generate report by merging Java model with the Docx

@@ -1,11 +1,11 @@
 package model;
 
 public class Project {
-    private final String name;
+
 
      private  final  String logo;
-    public Project(String name, String logo) {
-        this.name = name;
+    public Project(  String logo) {
+
         this.logo = logo;
     }
 
@@ -13,7 +13,5 @@ public class Project {
         return logo;
     }
 
-    public String getName() {
-        return name;
-    }
+
 }
