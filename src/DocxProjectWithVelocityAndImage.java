@@ -29,6 +29,7 @@ public class DocxProjectWithVelocityAndImage {
         metadata.addFieldAsList("developers.Name");
         metadata.addFieldAsList("developers.LastName");
         metadata.addFieldAsList("developers.Mail");
+        metadata.addFieldAsList("developers.logo");
 
         // 3) Create context Java model
         IContext context = report.createContext();
@@ -39,9 +40,13 @@ public class DocxProjectWithVelocityAndImage {
         context.put("logo", logo);
         List<Developer> developers = new ArrayList<Developer>();
         developers
-                .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com"));
+                .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com", logo));
         developers.add(new Developer("Leclercq", "Pascal",
-                "pascal.leclercq@gmail.com"));
+                "pascal.leclercq@gmail.com", logo));
+        developers.add(new Developer("Leclercq123", "Pascal",
+                "pascal.leclercq@gmail.com", logo));
+        developers.add(new Developer("Leclercq435", "Pascal",
+                "pascal.leclercq@gmail.com", logo));
         context.put("developers", developers);
         // 4) Generate report by merging Java model with the Docx
         OutputStream out = new FileOutputStream(new File(

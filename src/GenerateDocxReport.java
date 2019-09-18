@@ -12,10 +12,12 @@ import model.Project;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-public class GenerateDocxReport {
-
+public class GenerateDocxReport  {
     public static void main(String[] args) throws IOException, XDocReportException {
+        DocxProject();
+        return;
+    }
+    private static void DocxProject() throws IOException, XDocReportException {
         InputStream in = GenerateDocxReport.class
                 .getResourceAsStream("project.docx");
         IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,
@@ -33,7 +35,7 @@ public class GenerateDocxReport {
         // Here load is called with true because model is a list of Developer.
         fieldsMetadata.load("developers", Developer.class, true);
         fieldsMetadata.addFieldAsList("developers.Name");
-            fieldsMetadata.addFieldAsList("developers.LastName");
+        fieldsMetadata.addFieldAsList("developers.LastName");
         fieldsMetadata.addFieldAsList("developers.Mail");
 
         // 3) Create context Java model
@@ -44,14 +46,14 @@ public class GenerateDocxReport {
         // Register developers list
         List<Developer> developers = new ArrayList<Developer>();
         developers
-                .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com"));
+                .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com", logo));
         developers.add(new Developer("Leclercq", "Pascal",
-                "pascal.leclercq@gmail.com"));
+                "pascal.leclercq@gmail.com", logo));
         developers.add(new Developer("Leclercq", "Pascal",
-                "pascal.leclercq@gmail.com"));
+                "pascal.leclercq@gmail.com", logo));
         for (int i = 0; i < 10; i++) {
             developers.add(new Developer(System.currentTimeMillis()+"", "Pascal",
-                    "pascal.leclercq@gmail.com"));
+                    "pascal.leclercq@gmail.com", logo));
 
         }
         context.put("developers", developers);
@@ -59,6 +61,5 @@ public class GenerateDocxReport {
         // 4) Generate report by merging Java model with the Docx
         OutputStream out = new FileOutputStream(new File(System.currentTimeMillis()+"project_out.docx"));
         report.process(context, out);
-
     }
 }
