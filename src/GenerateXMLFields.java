@@ -3,6 +3,7 @@ import fr.opensagres.xdocreport.template.TemplateEngineKind;
 import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
 import model.Developer;
 import model.Project;
+import model.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +16,8 @@ public class GenerateXMLFields {
 
         // 2) Load fields metadata from Java Class
         fieldsMetadata.load("project", Project.class);
+
+        fieldsMetadata.load("user", User.class);
         // Here load is called with true because model is a list of Developer.
         fieldsMetadata.load("developers", Developer.class, true);
 

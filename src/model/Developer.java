@@ -3,12 +3,10 @@ package model;
 import fr.opensagres.xdocreport.document.images.IImageProvider;
 
 public class Developer {
-
-
     private final String name;
     private final String lastName;
     private final String mail;
-    private  final IImageProvider logo;
+    private final IImageProvider logo;
 
     public Developer(String name, String lastName, String mail, IImageProvider logo) {
         this.name = name;

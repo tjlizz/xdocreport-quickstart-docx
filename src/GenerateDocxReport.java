@@ -14,10 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 public class GenerateDocxReport  {
     public static void main(String[] args) throws IOException, XDocReportException {
-        DocxProject();
-        return;
-    }
-    private static void DocxProject() throws IOException, XDocReportException {
         InputStream in = GenerateDocxReport.class
                 .getResourceAsStream("project.docx");
         IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,
@@ -30,9 +26,9 @@ public class GenerateDocxReport  {
         // 2) Load fields metadata from Java Class
         fieldsMetadata.load("project", Project.class);
         IImageProvider logo = new ClassPathImageProvider(
-                GenerateDocxReport.class, "logo.png");
+                GenerateDocxReport.class, "img/logo.png");
 
-        // Here load is called with true because model is a list of Developer.
+         // Here load is called with true because model is a list of Developer.
         fieldsMetadata.load("developers", Developer.class, true);
         fieldsMetadata.addFieldAsList("developers.Name");
         fieldsMetadata.addFieldAsList("developers.LastName");
@@ -40,26 +36,23 @@ public class GenerateDocxReport  {
 
         // 3) Create context Java model
         IContext context = report.createContext();
-        Project project = new Project("logo");
+        Project project = new Project("ProjectName");
         context.put("project", project);
         context.put("logo", logo);
         // Register developers list
-        List<Developer> developers = new ArrayList<Developer>();
-        developers
-                .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com", logo));
+       List<Developer> developers = new ArrayList<Developer>();
+       developers
+                 .add(new Developer("ZERR", "Angelo", "angelo.zerr@gmail.com", logo));
+        developers.add(new Developer("Leclercq", "Pascal",
+               "pascal.leclercq@gmail.com", logo));
         developers.add(new Developer("Leclercq", "Pascal",
                 "pascal.leclercq@gmail.com", logo));
-        developers.add(new Developer("Leclercq", "Pascal",
-                "pascal.leclercq@gmail.com", logo));
-        for (int i = 0; i < 10; i++) {
-            developers.add(new Developer(System.currentTimeMillis()+"", "Pascal",
-                    "pascal.leclercq@gmail.com", logo));
 
-        }
         context.put("developers", developers);
 
         // 4) Generate report by merging Java model with the Docx
-        OutputStream out = new FileOutputStream(new File(System.currentTimeMillis()+"project_out.docx"));
+        OutputStream out = new FileOutputStream(new File( "project_out.docx"));
         report.process(context, out);
     }
+
 }

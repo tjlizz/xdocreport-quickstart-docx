@@ -1,17 +1,13 @@
 package model;
 
 public class Project {
+    private final String name;
 
-
-     private  final  String logo;
-    public Project(  String logo) {
-
-        this.logo = logo;
+    public Project(String name) {
+        this.name = name;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getName() {
+        return name;
     }
-
-
 }
